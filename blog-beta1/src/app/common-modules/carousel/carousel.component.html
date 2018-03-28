@@ -1,0 +1,43 @@
+<div class="card_container">
+  <div class="carousel-container">
+    <div  class="controls" >
+      <button
+      (click)="scroll(false, list)" [disabled]="amount >= 0">
+
+      <mat-icon> arrow_back </mat-icon>
+       <!-- <md-icon>keyboard_arrow_left </md-icon> -->
+      </button>
+   </div>
+    <div
+      class="carousel-wrapper" #carouselwrapper
+      [style.width]="width + 'px'" >
+      <div
+        class="carouselamos"
+        [style.transform]="'translateX('+amount+'px)'"
+        [style.webkitTransform]="'translateX('+amount+'px)'"
+        #list >
+        <!-- <div class="image" *ngFor="let image of data;let i = index">
+
+          <section class ="categoryList">
+            <mat-chip-list>
+              <mat-chip>{{image.categoryValue}}</mat-chip>
+            </mat-chip-list>
+          </section>
+        </div> -->
+        <div class="image" *ngFor="let image of imageList;let i = index">
+          <img [src]="image" height="380"/>
+        </div>
+
+    </div>
+    </div>
+    <div  class="controls">
+      <button
+      (click)="scroll(true, list)" [disabled]="amount <= -(list.scrollWidth-width)">
+
+      <mat-icon>arrow_forward</mat-icon>
+       <!-- <md-icon >keyboard_arrow_right </md-icon> -->
+     </button>
+   </div>
+  </div>
+
+</div>

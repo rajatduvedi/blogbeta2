@@ -1,0 +1,29 @@
+.homeView-card {
+  width: 80%;
+  margin: 0px auto;
+}
+
+.example-header-image {
+  background-image: url('http://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.blog-card{
+  width: 300px;
+  /*margin: 0px auto;*/
+}
+
+.containerHeader{
+  display: flex;
+  flex-direction: row;
+    flex-flow: wrap;
+  justify-content: space-around;
+}
+#categoryName{
+  display: inline-block;
+}
+#actionButton{
+  float:right;
+  display: inline-block;
+  cursor: pointer;
+}

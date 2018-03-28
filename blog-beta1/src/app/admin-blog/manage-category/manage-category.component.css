@@ -1,0 +1,22 @@
+.example-card {
+  width: 1000px;
+  margin: 0px auto;
+}
+
+.blog-card{
+  width: 900px;
+  margin: 0px auto;
+}
+
+.matIcon{
+  cursor: pointer;
+  /*margin: right;*/
+}
+
+.blogcategory-card{
+  /*width: 50px;*/
+}
+
+.blogcategory{
+  display: flex;
+}

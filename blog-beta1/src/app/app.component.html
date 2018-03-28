@@ -1,0 +1,43 @@
+
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="">Blog-bita.0.1</a>
+  </span>
+  <button mat-raised-button color="accent" [routerLink]="['/admin']">Blog admin</button>
+  <section *ngIf="!meuser">
+    <button mat-raised-button color="accent" (click)="openLogInPopup()">Log in</button>
+  </section>
+  <section *ngIf="!meuser">
+    <button mat-raised-button color="accent" (click)="openRegPopup()">Lets Start</button>
+  </section>
+  <section *ngIf="meuser">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <!-- <div class="userImage"> -->
+       <img [src]="user.imgUrl" class="userImage">
+      <!-- </div> -->
+    </button>
+    <mat-menu #menu="matMenu">
+      <p> Hola! {{user.name}}</p>
+      <p>Become a member</p>
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>Setting</button>
+      <button mat-menu-item (click)="logOut()">Logout</button>
+    </mat-menu>
+  </section>
+</mat-toolbar>
+
+<!-- <section *ngIf ="loaded">
+  <h1>Popular category</h1>
+<app-carousel [categoryList]="categoryList" [variable]="1"></app-carousel>
+</section> -->
+<!-- <section *ngIf ="loaded">
+  <h1>Popular Biography</h1>
+<app-carousel [imageList]="imageList" [variable]="1"></app-carousel>
+</section> -->
+<router-outlet name="header"></router-outlet>
+<div class="app-main-content">
+  <router-outlet></router-outlet>
+  <!-- <app-carousel [imageList]="imageList" [variable]="1"></app-carousel> -->
+</div>
+<footer>
+</footer>

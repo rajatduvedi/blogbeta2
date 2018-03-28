@@ -1,0 +1,183 @@
+<div class="admin-wrapper">
+  <mat-sidenav-container>
+    <mat-sidenav class="admin-sidenav-icons" mode="side" align="start" opened>
+      <div class="icons-wrapper">
+        <mat-nav-list>
+          <mat-list-item matTooltip="Show/Hide Menu" [matTooltipPosition]="tooltipPosition" (click)="hideSideMenus()">
+            <a>
+              <mat-icon>menu</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-list-item matTooltip="Dashboard" [matTooltipPosition]="tooltipPosition" (click)="showSideMenu('Dashboard')">
+            <a>
+              <mat-icon mat-list-icon>dashboard</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item matTooltip="Career" [matTooltipPosition]="tooltipPosition" (click)="showSideMenu('Career')">
+            <a>
+              <mat-icon mat-list-icon>work</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-list-item matTooltip="Courses" [matTooltipPosition]="tooltipPosition" (click)="showSideMenu('Blogs')">
+            <a>
+              <!--<mat-icon mat-list-icon>library_books</mat-icon>-->
+              <mat-icon mat-list-icon>Blogs</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-list-item matTooltip="Finance" [matTooltipPosition]="tooltipPosition" (click)="showSideMenu('Finances')">
+            <a>
+              <mat-icon mat-list-icon>attach_money</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-list-item matTooltip="Rewards" [matTooltipPosition]="tooltipPosition" (click)="showSideMenu('Rewards')">
+            <a>
+              <mat-icon mat-list-icon>card_giftcard</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item matTooltip="Help" (click)="showHelp()">
+            <a>
+              <mat-icon mat-list-icon>help</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+          <mat-list-item matTooltip="Settings" (click)="showSideMenu('Settings')">
+              <a>
+                <mat-icon mat-list-icon>settings</mat-icon>
+              </a>
+              <h4 mat-line>
+              </h4>
+            </mat-list-item>
+          <mat-list-item [routerLink]="['/logout']">
+            <a>
+              <mat-icon mat-list-icon>exit_to_app</mat-icon>
+            </a>
+            <h4 mat-line>
+            </h4>
+          </mat-list-item>
+
+
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <!-- Body -->
+
+  </mat-sidenav-container>
+  <mat-sidenav-container>
+    <mat-sidenav color="accent" class="admin-sidenav" #sidenav [opened]="show" mode="side" >
+      <mat-toolbar class="admin-sidenav-header">
+        <span>Blog module</span>
+      </mat-toolbar>
+      <mat-nav-list *ngIf="!showFiller">
+        <mat-list-item>
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <h4 mat-line> <a [routerLink]="['/admin/dashboard']">Dashboard</a></h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>list</mat-icon>
+          <h4 mat-line>
+            <a [routerLink]="['/admin/blog/blog-list']">Blog-list</a>
+          </h4>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon mat-list-icon>create</mat-icon>
+            <h4 mat-line>
+              <a [routerLink]="['/admin/blog/blog-create']">Create Blog</a>
+            </h4>
+          </mat-list-item>
+          <mat-list-item>
+              <mat-icon mat-list-icon>edit</mat-icon>
+              <h4 mat-line>
+                <a >Edit Blog</a>
+              </h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon>add_box</mat-icon>
+              <h4 mat-line>
+                <a color="primary" [routerLink]="['/admin/manage-category']"> Manage Blog</a>
+              </h4>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon>add_box</mat-icon>
+              <h4 mat-line>
+                <span (click)="showFiller = !showFiller">Manage Blog</span>
+              </h4>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>person</mat-icon>
+                <h4 mat-line>
+                  <a (click)="showInPopup()">Show in popup</a>
+                </h4>
+              </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>description</mat-icon>
+          <h4 mat-line>IRC Forms</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>people</mat-icon>
+          <h4 mat-line>Members</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Manage</h3>
+        <mat-list-item>
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h4 mat-line>Profile</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>settings</mat-icon>
+          <h4 mat-line>Settings</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>User</h3>
+        <mat-list-item>
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <h4 mat-line>Logout</h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list *ngIf="showFiller">
+        <mat-toolbar class="admin-sidenav-header">
+          <mat-list-item>
+          <mat-icon mat-list-icon (click)="showFiller = !showFiller">keyboard_arrow_left</mat-icon>
+            <h2 mat-line>Manage Blog</h2>
+          </mat-list-item>
+        </mat-toolbar>
+        <mat-list-item>
+          <mat-icon mat-list-icon>beenhere
+          </mat-icon>
+          <h4 mat-line>Manage Status Blogs </h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>beenhere</mat-icon>
+          <h4 mat-line>Manage Status User</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <h4 mat-line>Logout</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <h4 mat-line>Logout</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+  <div class="admin-main-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

@@ -1,0 +1,25 @@
+.categoryList-card-card {
+  width: 1300px;
+  margin: 0px auto;
+}
+
+.categoryList-card-header-image {
+  background-image: url('http://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.header {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/*.example-header-image {
+  background-image: url('/assets/alt.jpg');
+  background-size: cover;
+  height: 40px
+}*/
+#category{
+  cursor: pointer;
+}

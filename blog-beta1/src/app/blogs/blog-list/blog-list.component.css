@@ -1,0 +1,38 @@
+.example-card {
+  width: 300px;
+  margin-bottom: 10px;
+}
+.blogList{
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.example-header-image {
+  background-image: url('/assets/alt.jpg');
+  background-size: cover;
+}
+
+.menuAction{
+  /*float: */
+  /*float: right;*/
+  cursor: pointer;
+  margin-left: 42%;
+
+}
+.image{
+    /*margin-top: 10px;*/
+    width: 100%;
+}
+#imageBlog{
+  margin-top: 10px;
+  height: 180px;
+  width: 100%;
+}
+#contentHtmlBlog{
+  height: 62px;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}

@@ -1,0 +1,51 @@
+<p>
+  blog-table works!
+</p>
+<mat-table #table [dataSource]="dataSource">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="blogId">
+    <mat-header-cell *matHeaderCellDef> blogId. </mat-header-cell>
+    <mat-cell *matCellDef="let blogModel"> {{blogModel.blogId}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef> category </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="subCategory">
+    <mat-header-cell *matHeaderCellDef> subCategory </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.subCategory}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="blogTitle">
+    <mat-header-cell *matHeaderCellDef> blogTitle </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.blogTitle}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="blogimageUrl">
+    <mat-header-cell *matHeaderCellDef> blogimage </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <img src="/assets/image1.jpg" height="20" width="30" /> </mat-cell>
+  </ng-container>
+
+  <!-- Color Column -->
+  <ng-container matColumnDef="edit">
+    <mat-header-cell *matHeaderCellDef> edit </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <mat-icon>edit</mat-icon> </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="view">
+    <mat-header-cell *matHeaderCellDef> view </mat-header-cell>
+    <mat-cell *matCellDef="let element"><mat-icon>edit</mat-icon></mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef> delete </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <mat-icon>delete</mat-icon> </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

@@ -1,0 +1,12 @@
+<div class="dialog-container">
+  <h2>{{ title }}</h2>
+  <h3>{{ message }}</h3>
+  <div class="action">
+    <div class="cancelButton">
+      <button mat-raised-button color="primary" (click)="dialogRef.close(false)">{{cancelButtonString}}</button>
+    </div>
+    <div class="okButton">
+      <button mat-raised-button color="primary" (click)="dialogRef.close(true)">{{okButtonString}}</button>
+    </div>
+  </div>
+</div>

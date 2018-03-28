@@ -1,0 +1,18 @@
+
+<mat-card class="categoryList-card">
+  <mat-card-header>
+  </mat-card-header>
+  <mat-card-content>
+    <section class="header">
+      <section *ngFor="let list of categoryList">
+        <h1 (click)="goToBlogList(list.categorykey)" id="category">{{list.categoryValue}}</h1>
+      </section>
+      <section>
+        <h1 (click)="goToAllCategoryPage()">More</h1>
+      </section>
+    </section>
+  </mat-card-content>
+  <mat-card-actions>
+
+  </mat-card-actions>
+</mat-card>

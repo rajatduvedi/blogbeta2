@@ -1,0 +1,81 @@
+.view-card{
+  width: 1050px;
+  margin: 0px auto;
+}
+.comment-card{
+  width: 500px;
+  margin: 0px auto;
+}
+
+.example-header-image {
+  background-image: url('/assets/image2.jpg');
+  background-size: cover;
+
+}
+#view-card-content{
+  font-size: 20px
+}
+
+/*/deep/ mat-card-avatar{
+  height:50px;
+  width: 50px
+}*/
+ .contentHtml {
+   --x-height-multiplier: 0.375;
+     --baseline-multiplier: 0.17;
+     font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+     letter-spacing: .01rem;
+     font-weight: 400;
+     font-style: normal;
+     font-size: 21px;
+     line-height: 1.58;
+     letter-spacing: -.003em;
+ }
+
+ .action{
+   display: flex;
+   flex-direction: row;
+ }
+ .left-action{
+   display: flex;
+ }
+ .right-action{
+   /*float: right;*/
+   margin-left: 180px;
+   display: flex;
+   /*justify-content: space-around;*/
+ }
+ .spacer{
+   margin-right: 345px;
+   height: 40px
+ }
+ .mat-icon{
+   margin-left: 10px
+ }
+
+ .commentarea{
+   width: 100%;
+   height: 180px;
+ }
+ .insertEmogi{
+   display: flex;
+   flex-direction: row;
+ }
+
+ .image{
+     /*margin-top: 85px;*/
+     width: 100%;
+ }
+ #imageBlog{
+   margin-top: 10px;
+   /*height: 180px;*/
+   width: 100%;
+ }
+
+ .blogContent{
+   width: 100%;
+   overflow: hidden;
+ }
+ .blogContent img{
+   width: 100%
+ }

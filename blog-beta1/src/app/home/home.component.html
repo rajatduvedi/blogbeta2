@@ -1,0 +1,35 @@
+<div class="homeView-card ">
+    <h1>Biography</h1>
+    <app-carousel [imageList]="imageList" [variable]="1"></app-carousel>
+    <div ng-if="meuser">
+      <h1 id="categoryName">According to your intrest</h1>
+      <div *ngFor="let list of intrestedCategory">
+        <h3 id="categoryName">{{list}}</h3>
+         <div (click)="gotToBlockListBySubcategory(list,'intrest')" id="actionButton">
+        <h4>  ...more</h4>
+        </div>
+        <section class="containerHeader">
+          <app-sub-category-list [passData]="'intrest'" [categoryKey] = "list"></app-sub-category-list>
+      </section>
+      </div>
+    </div>
+    <div>
+      <h1 id="categoryName">we suggest you </h1>
+      <div>
+        <h3 id="categoryName">Recently Added Blogs</h3>
+         <div (click)="gotToBlockListBySubcategory(1,'recent')" id="actionButton">
+        <h4>  ...more</h4>
+        </div>
+      </div>
+        <section class="containerHeader">
+          <app-sub-category-list [passData]="'recent'"></app-sub-category-list>
+      </section>
+      <h3 id="categoryName">Popular Blogs</h3>
+       <div (click)="gotToBlockListBySubcategory(1,'popular')"  id="actionButton">
+         <h4>...more</h4>
+       </div>
+      <section class="containerHeader">
+        <app-sub-category-list [passData]="'popular'"></app-sub-category-list>
+    </section>
+  </div>
+  </div>
