@@ -16,12 +16,12 @@ module.exports = {
     data.role = ['reader']
     console.log(data)
     var user = new User({
-      name: data.userProfileName,
+      name: data.name,
       email: data.email,
       phone: data.phone || null,
       register_type: data.register_type,
-      identificationId: data.userId,
-      imgUrl: data.imageUrl,
+      identificationId: data.identificationId,
+      imageUrl: data.imageUrl,
       role: data.role,
       token: data.token
     })
@@ -37,12 +37,13 @@ module.exports = {
 
   function loginUser (req, res, next) {
     console.log(req.body)
-    console.log('reg')
+    console.log('login')
     var data = req.body
     console.log(data)
     if (data.register_type === 'mail') {
-      User.findOne({identificationId: data.userId}).then(u => {
-        console.log(u)
+      User.findOne({identificationId: data.identificationId}).then(u => {
+        // console.log(u)
+        // console.log("u")
         return res.status(200)
           .json(u);
       },err => {

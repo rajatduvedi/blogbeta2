@@ -7,6 +7,7 @@ import { DataService } from './../../../app-services/data/data-service.service';
 import { DialogsService } from './../../../app-services/service/dialog/dialog.service';
 import { AppConfigService } from './../../../app-services/core/app.contants.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { IUser, User } from '../../models/user.model';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // import EssentialsPlugin from '@ckeditor/ckeditor5-essentials/src/essentials';
 // import AutoformatPlugin from '@ckeditor/ckeditor5-autoformat/src/autoformat';
@@ -54,7 +55,7 @@ export class BlogCreateComponent implements OnInit {
   currentBlogId;
   separatorKeysCodes = [ENTER, COMMA];
   imagePath;
-  user = {};
+  user: IUser = new User();
   meuser = false;
   constructor(private _formBuilder: FormBuilder,
      private dataService: DataService,
@@ -82,9 +83,9 @@ export class BlogCreateComponent implements OnInit {
       tags:[''],
       excerptText: [''],
       readingTime: [''],
-      authorId: ['' || this.user._id],
-      authorName: ['' || this.user.name],
-      authorImage: ['' || this.user.imgUrl],
+      author: [''],
+      authorName: [''],
+      authorImage: [''],
       blogContent: ['', Validators.required],
       totalLikes: ['1'],
       blogimageUrl:['']
@@ -195,9 +196,9 @@ export class BlogCreateComponent implements OnInit {
     console.log(form);
     console.log(this.tags);
     console.log(this.createBlogFormGroup.value);
-    this.createBlogFormGroup.value.readingTime = this.calculationReadTime() + 'M'
+    this.createBlogFormGroup.value.readingTime = this.calculationReadTime() + 'min'
     this.createBlogFormGroup.value.blogimageUrl = this.imagePath;
-    // this.createBlogFormGroup.value.category = this.category;
+    this.createBlogFormGroup.value.author = this.user._id;
     this.createBlogFormGroup.value.tags = this.tags;
     console.log(this.createBlogFormGroup.value);
     this.blogModel = <IBlog>this.createBlogFormGroup.value;
@@ -230,9 +231,10 @@ export class BlogCreateComponent implements OnInit {
     console.log(this.createBlogFormGroup.value.blogContent)
     var myCode = this.createBlogFormGroup.value.blogContent
     var t = myCode.replace(/<(?:.|\n)*?>/gm, '').replace(/(\r\n|\n|\r)/gm,"").replace('&nbsp;','');
-    console.log(t)
-    console.log(t.trim().length)
-    var readingTime = ( t.trim().length ) / 275
+    console.log(t);
+    console.log(t.trim().length);
+    var readingTime = ( t.trim().length ) / 275;
+    readingTime = Math.round(readingTime);
     return readingTime
 
   }
@@ -337,6 +339,7 @@ export class BlogCreateComponent implements OnInit {
     console.log(this.calculationReadTime())
     console.log(this.createBlogFormGroup.value)
   }
+
 
 
 

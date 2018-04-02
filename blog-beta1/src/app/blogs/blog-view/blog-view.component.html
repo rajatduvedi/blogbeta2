@@ -1,10 +1,12 @@
 <!-- <button mat-raised-button color="accent" (click)="goToPrevious()">Back</button> -->
 <mat-card class="view-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{blogModel.authorName}}</mat-card-title>
+    <div mat-card-avatar class="example-header-image">
+      <img [src]="imageUrl" class="userImage">
+    </div>
+    <mat-card-title>{{name}}</mat-card-title>
     <mat-card-subtitle>Mean stack Developer / content writer </mat-card-subtitle>
-    <mat-card-subtitle>15 Dec.   {{blogModel.readingTime}} </mat-card-subtitle>
+    <mat-card-subtitle>{{blogModel.blogCreationDate | date}}  {{blogModel.readingTime}} </mat-card-subtitle>
   </mat-card-header>
   <!-- <img mat-card-image [src]="blogModel.blog" alt="Photo of a Shiba Inu"> -->
   <mat-card-content id="view-card-content">
@@ -39,9 +41,11 @@
 <section *ngIf="commentBox">
   <mat-card class="comment-card">
     <mat-card-header (click)="changeCommentHtml()">
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="example-header-image">
+        <img [src]="user.imageUrl" class="userImage">
+      </div>
       <span *ngIf="!headerTitle">Write a Comment .......</span>
-      <mat-card-title *ngIf="headerTitle">{{blogModel.authorName}}</mat-card-title>
+      <mat-card-title *ngIf="headerTitle">{{user.name}}</mat-card-title>
       </mat-card-header>
       <mat-card-content *ngIf="headerTitle">
         <textarea class="commentarea" [(ngModel)]="comment"></textarea>
@@ -62,14 +66,16 @@
 <section class="spacer">
 </section>
 <section *ngIf="commentBox">
-  <mat-card class="comment-card" (click)="showAllComment()">
+  <mat-card class="comment-card"  (click)="showAllComment()">
     <span [innerHtml]="commentsLoadMsg"> </span>
   </mat-card>
   <section *ngFor = "let comment of commentArray ; let i = index ">
     <mat-card class="comment-card" (click)="showAllComment()">
       <mat-card-header >
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title >{{comment.userProfileName}}</mat-card-title>
+        <div mat-card-avatar class="example-header-image">
+          <img [src]="comment.user.imageUrl" class="userImage">
+        </div>
+        <mat-card-title >{{comment.user.name}}</mat-card-title>
         </mat-card-header>
         <mat-card-content >
           <span [innerHtml]>{{comment.message}}</span>

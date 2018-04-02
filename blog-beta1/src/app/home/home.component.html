@@ -1,7 +1,7 @@
 <div class="homeView-card ">
-    <h1>Biography</h1>
+    <h1>in case you miss me </h1>
     <app-carousel [imageList]="imageList" [variable]="1"></app-carousel>
-    <div ng-if="meuser">
+    <div *ngIf="meuser">
       <h1 id="categoryName">According to your intrest</h1>
       <div *ngFor="let list of intrestedCategory">
         <h3 id="categoryName">{{list}}</h3>

@@ -4,6 +4,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { UserRegistrationComponent } from './iamModule/user-registration/user-registration.component';
 import { CategoryListPopupComponent } from './iamModule/category-list-popup/category-list-popup.component';
 // import * as FroalaEditor from 'froala-editor/js/froala_editor.pkgd.min';
+import { Router } from '@angular/router';
+import { IUser, User } from '././models/user.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,9 +16,9 @@ export class AppComponent implements OnInit {
   categoryList = [];
   loaded = false;
   imageList =[];
-  user = {};
+  user: IUser = new User();
   meuser = false
-  constructor(private dataService: DataService, public dialog: MatDialog){
+  constructor(private dataService: DataService, public dialog: MatDialog, private router: Router){
 
 
   }
@@ -30,12 +32,11 @@ export class AppComponent implements OnInit {
         }
       )
 
-      this.getResponsefromLocalStroage();
+      this.getResponsefromLocalStroage('temp');
   }
 
   openRegPopup() {
     const dialogRef = this.dialog.open(UserRegistrationComponent, {
-      disableClose: true,
       width: '60%',
       data: { availableList: "hello", assignedList: [], type: 'signUp', }
     });
@@ -43,14 +44,14 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-      this.selectCategory();
-      this.getResponsefromLocalStroage()
+      this.getResponsefromLocalStroage('reg')
+      this.router.navigate(['/']);
+      location.reload()
     });
   }
 
   openLogInPopup () {
     const dialogRef = this.dialog.open(UserRegistrationComponent, {
-      disableClose: true,
       width: '60%',
       data: { availableList: "hello", assignedList: [], type: 'login', }
     });
@@ -58,8 +59,9 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-      this.getResponsefromLocalStroage()
-      this.selectCategory();
+      this.getResponsefromLocalStroage('login')
+      this.router.navigate(['/']);
+      location.reload()
     });
   }
   selectCategory () {
@@ -72,23 +74,35 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-      this.getResponsefromLocalStroage()
+      this.getResponsefromLocalStroage('temp')
     });
   }
-  getResponsefromLocalStroage(){
+  getResponsefromLocalStroage(flag){
     // console.log(this.dataService.getLocalStroageUser())
     this.user = this.dataService.getLocalStroageUser()
     if (this.user) {
       this.meuser = true
+      if (flag === 'reg') {
+        this.selectCategory();
+      }
+      // this.router.navigate(['/']);
+      // location.reload()
     }
     else {
       this.meuser = false
     }
   }
 
+  newStroy() {
+    this.router.navigate(['/blog/blog-create']);
+  }
+
   logOut () {
     localStorage.removeItem('currentuser')
-    this.getResponsefromLocalStroage();
+    this.getResponsefromLocalStroage('temp');
+    this.router.navigate(['/']);
+    // console.log('hello')
+    location.reload()
 
   }
 }

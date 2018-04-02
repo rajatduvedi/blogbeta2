@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IBlog, Blog, IComment, Comment, ILikes, Likes} from '../../models/blog.model';
 import { DataService } from './../../../app-services/data/data-service.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { IUser, User } from '../../models/user.model';
 
 @Component({
   selector: 'app-blog-view',
@@ -17,8 +18,12 @@ export class BlogViewComponent implements OnInit {
   commentArray = [];
   commentIndex ;
   reply = '';
+  imageUrl = '';
+  name = '';
   toolTip;
   noOfComments;
+  user: IUser = new User();
+  meuser = false
   replybox = false;
 
   emogiCollection = ['mood','mood_bad','sentiment_dissatisfied','sentiment_neutral','sentiment_very_dissatisfied']
@@ -32,13 +37,21 @@ export class BlogViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('hsgdff')
      this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.blogId = params['blogId'];
+      this.getResponsefromLocalStroage()
       this.dataService.getBlogById(this.blogId)
         .subscribe(
           res => {
             // console.log(res);
             this.blogModel = res;
+            console.log(this.blogModel)
+            this.imageUrl = this.blogModel.author.imageUrl;
+            this.name = this.blogModel.author.name
+             var template = document.createElement('template');
+             template.innerHTML = this.blogModel.blogContent;
+             console.log(template.innerHTML)
             this.noOfComments = this.blogModel.comments.length;
             this.toolTip = '<div *ngFor="let like of this.blogModel.likes"> {{like}}</div>'
             // this.blogModel.blogCreationDate
@@ -80,9 +93,8 @@ export class BlogViewComponent implements OnInit {
     const tempComment: IComment =  new Comment();
     tempComment.message = this.comment;
     tempComment.timePosted = new Date();
-    tempComment.owner = '1';
     tempComment.replies = [];
-    tempComment.userProfileName = 'rajat';
+    tempComment.user = this.user._id;
     this.blogModel.comments.splice(0, 0, tempComment);
     // console.log(this.blogModel);
     this.dataService.createBlog(this.blogModel)
@@ -214,9 +226,8 @@ export class BlogViewComponent implements OnInit {
     const tempreply: IComment =  new Comment();
     tempreply.message = this.reply;
     tempreply.timePosted = new Date();
-    tempreply.owner = '1';
+    tempreply.user = this.user._id;
     tempreply.replies = [];
-    tempreply.userProfileName = 'rajat';
     this.blogModel.comments[index].replies.splice(0, 0, tempreply);
     // console.log(this.blogModel.comments[index]);
     this.dataService.createBlog(this.blogModel)
@@ -239,6 +250,16 @@ export class BlogViewComponent implements OnInit {
   LikeReply(commentIndex, index) {
     console.log(commentIndex);
     console.log(index);
+  }
+  getResponsefromLocalStroage(){
+    // console.log(this.dataService.getLocalStroageUser())
+    this.user = this.dataService.getLocalStroageUser()
+    if (this.user) {
+      this.meuser = true
+    }
+    else {
+      this.meuser = false
+    }
   }
 
 }

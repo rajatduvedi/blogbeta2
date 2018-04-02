@@ -122,11 +122,12 @@ module.exports = {
 
   function getAllBlogs(req, res, next){
     blog = Blog.Blog;
-    blog.find().exec(function(err, blogDoc) {
+    blog.find().populate('author').exec(function(err, blogDoc) {
       if(err) {
         return next(err);
       }
       if(blogDoc) {
+        console.log(blogDoc)
         return res.status(200)
           .json(blogDoc);
       }else {
@@ -140,8 +141,9 @@ module.exports = {
     blog = Blog.Blog;
     console.log(req.params);
 
-    blog.findOne({_id: req.params.blogId}).then(blogDoc => {
+    blog.findOne({_id: req.params.blogId}).populate('author').populate('comments.user').then(blogDoc => {
       if(blogDoc) {
+        console.log(blogDoc)
         return res.status(200)
           .json(blogDoc);
       } else {
@@ -175,7 +177,7 @@ module.exports = {
       console.log(req.params.id);
       var limit = 6;
       var index = req.params.index;
-      blog.find({subCategory: req.params.id}).skip(limit*index).limit(limit).then(blogDoc => {
+      blog.find({subCategory: req.params.id}).populate('author').skip(limit*index).limit(limit).then(blogDoc => {
         if(blogDoc) {
           return res.status(200)
             .json(blogDoc);
@@ -189,7 +191,7 @@ module.exports = {
     blog = Blog.Blog;
     var limit = 6;
     var index = req.params.index;
-    blog.find().skip(limit*index).limit(limit).sort({blogCreationDate: 'desc'}).exec(function(err, blogDoc) {
+    blog.find().populate('author').skip(limit*index).limit(limit).sort({blogCreationDate: 'desc'}).exec(function(err, blogDoc) {
       if(err) {
         return next(err);
       }
@@ -207,7 +209,7 @@ module.exports = {
     blog = Blog.Blog;
     var limit = 6;
     var index = req.params.index;
-    blog.find().skip(limit*index).limit(limit).sort({totalLikes: 'desc', comments: 'desc'}).exec(function(err, blogDoc) {
+    blog.find().skip(limit*index).populate('author').limit(limit).sort({totalLikes: 'desc', comments: 'desc'}).exec(function(err, blogDoc) {
       if(err) {
         return next(err);
       }
@@ -226,7 +228,7 @@ module.exports = {
     console.log(req.params);
     var limit = 6;
     var index = req.params.index;
-    blog.find({ category: req.params.category}).skip(limit*index).limit(limit).then(blogDoc => {
+    blog.find({ category: req.params.category}).populate('author').skip(limit*index).limit(limit).then(blogDoc => {
       if(blogDoc) {
         return res.status(200)
           .json(blogDoc);

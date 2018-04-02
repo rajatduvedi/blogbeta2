@@ -18,7 +18,7 @@ export class UserRegistrationComponent implements OnInit {
   titleNote = 'hola';
   contentNote = '';
   boxPanel = false;
-  userDetail: IUser = new User('')
+  userDetail: IUser = new User()
   private scope = [
    'profile',
    'email',
@@ -85,8 +85,8 @@ public attachSignin(element) {
       console.log('Email: ' + profile.getEmail());
       //YOUR CODE HERE
       this.userDetail.token =  googleUser.getAuthResponse().id_token;
-      this.userDetail.userId = profile.getId();
-      this.userDetail.userProfileName = profile.getName();
+      this.userDetail.identificationId = profile.getId();
+      this.userDetail.name = profile.getName();
       this.userDetail.imageUrl =  profile.getImageUrl();
       this.userDetail.email = profile.getEmail();
       this.userDetail.register_type = 'mail';
@@ -130,7 +130,7 @@ public attachSignin(element) {
     this.dataService.loginUser(this.userDetail)
       .subscribe(
         res =>{
-          // console.log(res)
+          console.log(res)
           this.registerDone(res)
           // this.router.navigate(['/blog/topics'])
         },
@@ -144,6 +144,7 @@ public attachSignin(element) {
   }
 
   registerDone (data) {
+    console.log(data)
     localStorage.setItem('currentuser',JSON.stringify(data))
     this.dialogRef.close();
   }
@@ -152,6 +153,9 @@ public attachSignin(element) {
 
     // localStorage.setItem('currentuser',JSON.stringify(this.userDetail))
 
+    this.dialogRef.close();
+  }
+  cancel () {
     this.dialogRef.close();
   }
   // onNoClick(): void {

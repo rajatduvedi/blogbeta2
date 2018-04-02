@@ -8,10 +8,10 @@ var user = Schema({
   phone: Number,
   register_type: String,
   identificationId:String,
-  imgUrl: String,
+  imageUrl: String,
   role:[],
   status: String,
-  intrestedCategory: [{ type: String,unique: true }],
+  intrestedCategory: [{ type: String}],
 })
 var User = mongoose.model('User', user);
 module.exports = User

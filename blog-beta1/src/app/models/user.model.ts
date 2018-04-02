@@ -23,15 +23,12 @@ large -- detailed profile like, address , and other UserDetailsPage.
 export interface IUser {
     _id?: string; // database ID
     token: string;
-    userId: string; // uniquely identifies the user
-    userProfileName: string; // user profile name displayed on the blog etc. can be edited on profile page
-    firstName?: string;
-    lastName?: string;
+    name: string; // user profile name displayed on the blog etc. can be edited on profile page
     roles?: string[];
+    identificationId: string,
     email?: string;
     phone?: string;
-    avatarUrl?: any;
-    imageUrl?: any;
+    imageUrl: any;
     authorDoc: string[];
     register_type:string;
     status?: string; // active, inactive , suspended etc.
@@ -42,20 +39,16 @@ export interface IUser {
 export class User implements IUser {
     _id?: string; // database ID
     token: string;
-    userId: string; // uniquely identifies the user
-    userProfileName: string; // username displayed on the blog etc.
-    firstName?: string;
-    lastName?: string;
-    middleName?: string;
+    name: string;
     roles?: string[];
     email?: string;
     phone?: string;
-    imageUrl?: any;
+    imageUrl: any;
+    identificationId: string;
     register_type:string;
     authorDoc: string[];
     status?: string; // active, inactive , suspended etc.
-    constructor(userId: string) {
-        this.userId = userId ;
+    constructor() {
     }
 }
 

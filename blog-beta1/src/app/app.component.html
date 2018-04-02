@@ -13,12 +13,13 @@
   <section *ngIf="meuser">
     <button mat-button [matMenuTriggerFor]="menu">
       <!-- <div class="userImage"> -->
-       <img [src]="user.imgUrl" class="userImage">
+       <img [src]="user.imageUrl" class="userImage">
       <!-- </div> -->
     </button>
     <mat-menu #menu="matMenu">
       <p> Hola! {{user.name}}</p>
       <p>Become a member</p>
+      <button mat-menu-item (click)="newStroy()">Write your new story</button>
       <button mat-menu-item>Profile</button>
       <button mat-menu-item>Setting</button>
       <button mat-menu-item (click)="logOut()">Logout</button>

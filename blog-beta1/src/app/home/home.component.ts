@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   getResponsefromLocalStroage(){
+    console.log('hasgdhahasan raxa')
     // console.log(this.dataService.getLocalStroageUser())
     this.user = this.dataService.getLocalStroageUser()
     if (this.user) {

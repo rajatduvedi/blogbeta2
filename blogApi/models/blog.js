@@ -12,7 +12,7 @@ var blogCategorySchema = Schema({
 
 var blogSchema = Schema({
   userId: String,
-  authorId: String, // userId -- hidden
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   authorName: String, // username of Owner -- displayed on the blog
   authorImage: String,
   blogTitle: String, // article title max 80 char
@@ -27,9 +27,7 @@ var blogSchema = Schema({
     _id: false,
     message: String,
     timePosted: Date,
-    owner: String,
-    userProfileName: String,
-    userAvatarUrl: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     totalLikes: Number,
     likes: [{
       _id: false,
@@ -40,9 +38,7 @@ var blogSchema = Schema({
       _id: false,
       message: String,
       timePosted: Date,
-      owner: String,
-      userProfileName: String,
-      userAvatarUrl: String,
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
       totalLikes: Number,
       likes: [{
         _id: false,

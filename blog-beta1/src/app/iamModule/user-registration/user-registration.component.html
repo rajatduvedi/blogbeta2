@@ -2,6 +2,9 @@
 <section *ngIf="!boxPanel">
 <div class="pop-card" >
   <div class="titleheader">
+    <h1><mat-icon (click)="cancel()">clear</mat-icon></h1>
+  </div>
+  <div class="titleheader">
     <h1> <span [innerHtml]="titleNote"></span></h1>
   </div>
   <div>

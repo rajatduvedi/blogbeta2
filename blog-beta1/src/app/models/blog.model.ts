@@ -1,7 +1,8 @@
+import { IUser, User } from './user.model';
 export interface IBlog {
     _id: string;
     userId: string;
-    authorId: string; // userId -- hidden
+    author: IUser; // userId -- hidden
     authorName: string; // username of Owner -- displayed on the blog
     authorImage: string;
     blogId: string; // format: xxxxxx_nnn  x is a alphabet except underscore
@@ -28,7 +29,7 @@ export interface IBlog {
 export class Blog implements IBlog {
   _id: string;
   userId: string;
-  authorId: string; // userId -- hidden
+  author: IUser; // userId -- hidden
   authorName: string; // username of Owner -- displayed on the blog
   authorImage: string;
   blogId: string; // format: xxxxxx_nnn  x is a alphabet except underscore
@@ -98,9 +99,7 @@ export class Likes implements ILikes {
 export interface IComment {
     message: string;
     timePosted: Date;
-    owner: string; // userId
-    userProfileName: string; // username displayed on the blog
-    userAvatarUrl: string;
+    user: string; // username displayed on the blog
     likes: ILikes[];
     totalLikes: number;
     // totalLikes: number; // future
@@ -111,11 +110,9 @@ export interface IComment {
 export class Comment implements IComment {
     message: string;
     timePosted: Date;
-    owner: string; // userId
-    userAvatarUrl: string;
+    user: string; // userId
     likes: ILikes[];
     totalLikes: number;
-    userProfileName: string; // username displayed on the blog
     // totalLikes: number; // future
     // totalDislikes: number; // future
     replies: IComment[];  //  reply or comment

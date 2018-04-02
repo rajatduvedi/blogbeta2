@@ -9,11 +9,12 @@
       <mat-card class="blog-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
-            <img [src]="blog.authorImage" class="userImage">
+            <img [src]="blog.author.imageUrl" class="userImage">
           </div>
-          <mat-card-title>{{blog.authorName}}</mat-card-title>
+          <mat-card-title>{{blog.author.name}}</mat-card-title>
           <mat-card-subtitle>{{blog.category}}</mat-card-subtitle>
-          {{blog.blogCreationDate}}
+          {{blog.blogCreationDate | date}}
+          {{blog.readingTime}}
 
         </mat-card-header>
 
@@ -23,7 +24,7 @@
             </div>
 
             <h2>{{blog.blogTitle}}</h2>
-            <span id="contentHtmlBlog">{{blog.excerptText}}</span> <button mat-button (click)="gotoBlogView(blog._id)">.....Read More</button>
+            <span id="contentHtmlBlog">{{blog.blogContent}}</span> <button mat-button (click)="gotoBlogView(blog._id)">.....Read More</button>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button>LIKE</button>
