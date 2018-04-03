@@ -45,8 +45,8 @@ export class AppComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
       this.getResponsefromLocalStroage('reg')
-      this.router.navigate(['/']);
-      location.reload()
+      // this.router.navigate(['/']);
+      // location.reload()
     });
   }
 

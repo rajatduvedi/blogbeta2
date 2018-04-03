@@ -66,7 +66,7 @@ export class ManageCategoryComponent implements OnInit, OnDestroy {
     this.dataService.getAllCategory()
       .subscribe(
         res => {
-          // console.log(res);
+          console.log(res);
           this.categories = res;
           // this.category. res;
           this.categories.splice(0,0,{categorykey:'none',categoryValue:'select as Root Category', _id: '0'});
@@ -113,7 +113,6 @@ export class ManageCategoryComponent implements OnInit, OnDestroy {
       this.category.categoryValue = this.createBlogCategoryFormGroup.value.blogCategoryDisplayedvalue;
       this.category.parentCategoryId = this.createBlogCategoryFormGroup.value.blogCategoryId;
       console.log(this.category);
-
       this.dataService.createBlogCategory(this.category)
         .subscribe(
           res => {
